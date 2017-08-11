@@ -6,10 +6,10 @@ dict = [{ name: "WTF", def: "Wednesday Thursday Friday"},
 define = (acro) ->
   get_def = dict.filter (x) -> `x.name == acro`
   if `get_def.length == 1 `
-    res.reply get_def[0]['def']
+    get_def[0]['def']
   else if `get_def.length > 1`
-    res.reply "#{ acro } might mean:"
-    get_def.map (x) -> res.reply " #{ x.def }"
+    alldefs = get_def.map (x) -> res.reply " #{ x.def }"
+    "#{ acro } might mean:" + alldefs
   else if acro in ["B.R.A.D.", "BRAD", "brad"]
     randomWords = require "random-words"
     b = randomWords()
