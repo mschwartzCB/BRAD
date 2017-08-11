@@ -4,7 +4,7 @@ dict = [{ name: "WTF", def: "Wednesday Thursday Friday"},
 		{ name: "NPM", def: "node package manager"}]
 
 module.exports = (robot) ->
-  robot.respond /what does (.*) stand for?/i, (res) ->
+  robot.respond /what does (.*) stand for(.?)/i, (res) ->
     acro = res.match[1]
     get_def = dict.filter (x) -> `x.name == acro`
     if `get_def.length == 1 `
@@ -33,3 +33,5 @@ module.exports = (robot) ->
 
   	new_acro = { name: acro, def: def }
   	dict.push new_acro
+
+    res.reply "Okay, " + acro + " means " + def
