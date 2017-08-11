@@ -9,7 +9,8 @@ define = (acro) ->
     get_def[0]['def']
   else if `get_def.length > 1`
     alldefs = get_def.map (x) -> res.reply " #{ x.def }"
-    "#{ acro } might mean:" + alldefs
+    alldefs = "#{ acro } might mean:" + alldefs
+    alldefs
   else if acro in ["B.R.A.D.", "BRAD", "brad"]
     randomWords = require "random-words"
     b = randomWords()
