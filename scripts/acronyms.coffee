@@ -6,8 +6,7 @@ dict = [{ name: "WTF", def: "Wednesday Thursday Friday"},
 module.exports = (robot) ->
   robot.respond /what does (.*) stand for?/i, (res) ->
     acro = res.match[1]
-    if acro is "WTF"
-      res.reply "Wednesday Thursday Friday"
+    get_def = dict.filter (x) -> `x.name == acro`
     if acro is "B.R.A.D." or "BRAD" or "brad"
       randomWords = require "random-words"
       b = randomWords()
@@ -23,10 +22,7 @@ module.exports = (robot) ->
       while String(d.substr 0,1) isnt "d"
         d = randomWords()
       res.reply b[0].toUpperCase() + b[1..-1] + " " + r[0].toUpperCase() + r[1..-1] + " " + a[0].toUpperCase() + a[1..-1] + " " + d[0].toUpperCase() + d[1..-1]
-
-    get_def = dict.filter (x) -> `x.name == acro`
-
-    if `get_def.length == 1 `
+    else if `get_def.length == 1 `
       res.reply get_def[0]['def']
     else
       res.reply "I don't know that acronym"
