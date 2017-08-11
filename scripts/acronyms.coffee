@@ -9,7 +9,7 @@ module.exports = (robot) ->
     get_def = dict.filter (x) -> `x.name == acro`
     if `get_def.length == 1 `
       res.reply get_def[0]['def']
-    else if acro is "B.R.A.D." or "BRAD" or "brad"
+    else if acro is "B.R.A.D." or acros is "BRAD" acro is or "brad"
       randomWords = require "random-words"
       b = randomWords()
       while String(b.substr 0,1) isnt "b"
