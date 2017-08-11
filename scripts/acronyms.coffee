@@ -4,6 +4,7 @@ dict = [{ name: "WTF", def: "Wednesday Thursday Friday"},
 		{ name: "NPM", def: "node package manager"}]
 
 define = (acro) ->
+  acro = acro.toUpperCase()
   get_def = dict.filter (x) -> `x.name == acro`
   if `get_def.length == 1 `
     get_def[0]['def']
@@ -45,6 +46,6 @@ module.exports = (robot) ->
   robot.respond /add (.*) means (.*) to acronyms/i, (res) ->
   	acro = res.match[1]
   	def = res.match[2]
-  	new_acro = { name: acro, def: def }
+  	new_acro = { name: acro.toUpperCase(), def: def }
   	dict.push new_acro
   	res.reply "Ok! Added '#{ acro }: #{ def }' to acronyms "
