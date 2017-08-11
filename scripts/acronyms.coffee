@@ -29,6 +29,11 @@ define = (acro) ->
   else
     "I don't know that acronym"
 
+add = (acro, def) ->
+  new_acro = { name: acro, def: def }
+  dict.push new_acro
+  "Ok! Added '#{ acro }: #{ def }' to acronyms "
+
 module.exports = (robot) ->
   robot.respond /what does (.*) stand for(.?)/i, (res) ->
     acro = res.match[1]
@@ -42,9 +47,12 @@ module.exports = (robot) ->
     acro = res.match[1]
     res.reply define(acro)
 
-  robot.respond /add (.*) means (.*) to acronyms/i, (res) ->
-  	acro = res.match[1]
-  	def = res.match[2]
-  	new_acro = { name: acro, def: def }
-  	dict.push new_acro
-  	res.reply "Ok! Added '#{ acro }: #{ def }' to acronyms "
+  robot.respond /add (.*) means (.*) (.to acronyms)/i, (res) ->
+    acro = res.match[1]
+    def = res.match[2]
+    res.reply add(acro, def)
+
+  robot.respond /define (.*): (.*)/i, (res) ->
+    acro = res.match[1]
+    def = res.match[2]
+    res.reply add(acro, def)
