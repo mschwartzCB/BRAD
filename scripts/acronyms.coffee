@@ -32,3 +32,4 @@ module.exports = (robot) ->
   	def = res.match[2]
   	new_acro = { name: acro, def: def }
   	dict.push new_acro
+  	res.reply "Ok! Added '#{ acro }: #{ def }' to acronyms "
