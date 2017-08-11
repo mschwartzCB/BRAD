@@ -37,6 +37,10 @@ module.exports = (robot) ->
     acro = res.match[1]
     res.reply define(acro)
 
+  robot.respond /what does (.*) mean(.?)/i, (res) ->
+    acro = res.match[1]
+    res.reply define(acro)
+
   robot.respond /add (.*) means (.*) to acronyms/i, (res) ->
   	acro = res.match[1]
   	def = res.match[2]
